@@ -134,4 +134,29 @@ class Arraysds{
             }
             return list;
         }
+
+        //https://leetcode.com/problems/pascals-triangle/submissions/
+
+        public List<List<Integer>> generate(int n) {
+        
+            List<List<Integer>> list = new ArrayList<>();
+            List<Integer> row = null;
+            List<Integer> prev = null;
+            
+            for(int i=0; i<n; i++){
+                row = new ArrayList<>();
+                for(int j=0; j<=i; j++){
+                    if(j == 0 || j == i){
+                        row.add(1);
+                    }else{
+                       row.add(prev.get(j-1)+prev.get(j));
+                    }
+                }
+                
+                prev =row;
+                list.add(row);
+            }
+            return list;
+            
+        }
     }
