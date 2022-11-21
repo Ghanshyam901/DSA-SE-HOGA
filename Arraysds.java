@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -159,4 +160,69 @@ class Arraysds{
             return list;
             
         }
+
+        public int unequalTriplets(int[] nums) {
+            int count =0;
+
+            int n = nums.length;
+            for(int i=0; i<n;i++){
+                for(int j=i+1; j<n; j++){
+                    for(int k = j+1; k<n; k++){
+                        if(nums[i] != nums[j] && nums[i] != nums[j] && nums[j] != nums[k]){
+                            count++;
+                        }
+                    }
+                }
+            }
+            
+            return count;
+    
+        }
+
+        // https://leetcode.com/problems/majority-element-ii/submissions/
+        public List<Integer> majorityElement(int[] nums) {
+        
+            int time = nums.length/3;
+            HashMap<Integer,Integer> map = new HashMap<>();
+            List<Integer> ans = new ArrayList<>();
+                
+            for(int i=0; i<nums.length; i++){
+                map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+                    
+                
+            }
+        
+                for(int key : map.keySet()){
+                    if(map.get(key) > time ){
+                        ans.add(key);
+                    }
+                } 
+       return ans;
+        }
+
+        // //https://leetcode.com/problems/majority-element-ii/submissions/
+
+
+        public static int maxLen(int arr[], int n)
+    {
+       int maxl = 0;
+       int sum =0;
+       HashMap<Integer,Integer> map = new HashMap<>();
+       
+       for(int i=0; i<n; i++){
+           sum+=arr[i];
+           if(sum == 0){
+               maxl = i+1;
+           }else{
+               if(map.get(sum) != null){
+                   maxl = Math.max(maxl,i-map.get(sum));
+               }else{
+                   map.put(sum,i);
+               }
+           }
+       }
+       
+       return maxl;
     }
+    }
+
